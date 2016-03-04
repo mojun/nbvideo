@@ -82,8 +82,8 @@ require('cloud/routes/index')(app);
 require('cloud/routes/user')(app, AV);
 require('cloud/routes/category')(app, AV);
 require('cloud/routes/video')(app, AV);
-require('cloud/testor')(app);
-require('cloud/routes/ymmbd')(app);
+// require('cloud/testor')(app);
+// require('cloud/routes/ymmbd')(app);
 
 app.use(app.router);
 

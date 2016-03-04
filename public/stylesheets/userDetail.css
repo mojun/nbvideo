@@ -1,0 +1,11 @@
+.user-h4 {
+	display: inline-block;
+}
+
+.user-img {
+	display: inline-block;
+}
+
+h4 strong {
+	color: green;
+}

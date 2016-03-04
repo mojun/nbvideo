@@ -1,0 +1,11 @@
+mixin pagination(currentPage, totalPages, pages)
+	ul.pagination: each p, i in pages
+		li(class=currentPage == p ? 'active' : null)
+			- var p_index = p == '...' ? (i ? totalPages : 1) : p
+			a(href='users?page=#{p_index}')= p
+
+mixin paginationVideo(currentPage, totalPages, pages)
+	ul.pagination: each p, i in pages
+		li(class=currentPage == p ? 'active' : null)
+			- var p_index = p == '...' ? (i ? totalPages : 1) : p
+			a(href='#', page=p_index)= p

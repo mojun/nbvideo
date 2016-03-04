@@ -1,0 +1,107 @@
+extends ../layouts/default
+
+include ../mixins/pagination
+
+mixin videoHtml(o)
+    a.list-group-item(href="/video/player?sid=" + o.sid + "&vid="+o.vid+"&name="+o.name + "&desc="+o.desc, target="_blank", objectid=o.objectId, vid=o.vid, vtime=o.vtime, sid=o.sid, summary=o.summary, vurl=o.vurl, vtype=o.vtype)
+        h4.list-group-item-heading= o.name
+        p.list-group-item-text= o.desc
+        img.video-pic.img-thumbnail(src="http://mojun.github.io/appimage/nbvideo/" + o.picPath, alt="...")
+        button.btn.btn-default.btn-edit-video(type="button", data-toggle="modal", data-target="#video-create-modal", style="right:" + (isAdmin ? "10px;" : "-9999px;")) 编辑
+
+block css
+    link(rel='stylesheet', href='/stylesheets/categoryVideoList.css')
+
+block js
+    script(src="/javascripts/categoryVideoList.js")
+
+block intro
+    h2(desc=subCategoryDesc, subcategoryid=subCategoryId, isAdmin=(isAdmin ? "1" : "0"))= subCategoryName
+    h4
+        strong(id="pageIndexTag", page=currentPage)= "第"+currentPage+"页, "
+        strong= "总共"+totalCount+"条, "
+        strong= "总共"+totalPages+"页, "
+        strong= "每页"+pageSize+"条"
+
+block content
+    if(isAdmin) 
+        div.item-toolbar
+            button.btn.btn-success(type="button", data-toggle="modal", data-target="#video-create-modal") 新建视频
+        br
+    ol.breadcrumb
+        li
+            a(href="/admin/page/categoryList") 视频分类
+        li
+            a(href="/admin/page/categoryList/sub?objectId="+mainCategoryId+"&name="+mainCategoryName+"&desc="+mainCategoryDesc+"&picpath="+mainPicUrl)= mainCategoryName
+        li.active= subCategoryName
+    br
+    
+    //这里是 新建视频或者修改视频 modal
+    div#video-create-modal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myTitleLabel", aria-hidden="true")
+        div.modal-dialog.modal-md
+            div.modal-content
+                div.modal-header
+                    button.close(type="button", data-dismiss="modal")
+                        span(aria-hidden="true")&times;
+                        span.sr-only Close
+                    h4.modal-title(id="myTitleLabel") 创建视频
+                div.modal-body
+                    label.field-label 视频名称
+                    input.form-control(type="text", id="video-name", placeholder="请填写视频名称")
+                    label.field-label 视频名称概要（少于12字）
+                    input.form-control(type="text", id="video-summary", placeholder="请填写视频概要")
+                    label.field-label 视频描述
+                    textarea.form-control(type="text", rows="4", id="video-description", placeholder="请填写视频描述")
+                    label.field-label 视频id(视频的唯一标示符)
+                    input.form-control(type="text", id="video-id", placeholder="请填写视频的id")
+                    label.field-label 视频时长
+                    input.form-control(type="text", id="video-time", placeholder="请填写视频的总时长")
+                    label.field-label 视频连接(视频的网站url)
+                    input.form-control(type="text", id="video-url", placeholder="请填写视频的url可选")
+                    label.field-label 填写图片url
+                    input.form-control(type="text", id="pic-path")
+                    label.field-label 视频源(来自四面网站例如优酷土豆乐视)
+                    br
+                    select(id="video-sid")
+                        each v,i in videoSources
+                            if i == 0
+                                option(value=i, selected="selected")= v
+                            else 
+                                option(value=i)= v
+                    br
+                    label.field-label 视频用来做什么（首页展示，还是普通）
+                    br
+                    select(id="video-type")
+                        option(value=0, selected="selected") 普通
+                        option(value=1) 首页展示
+                    br
+                    //input.form-control(type="file", style="display: none;", id="upload-pic-field")
+                    //label.field-label 视频缩略图
+                    //br
+                    //button.btn.btn-default(id="upload-pic-btn") 选择图片
+                    //img#pic-img.img-thumbnail(src="", alt="...")
+                    //br
+                    label.field-label= "是否推送   "
+                    input(type="checkbox", id="pushbox")
+
+
+                div.modal-footer
+                    button.btn.btn-default(data-dismiss="modal") Close
+                    button.btn.btn-primary(id="video-create-btn") Create
+                    button.btn.btn-primary(id="video-update-btn") Update
+
+    div.container
+        div.row
+            div.col-md-8
+                div#video-table.list-group
+                    each v in videoList
+                        +videoHtml(v)
+
+    hr
+    div.container
+        +paginationVideo(currentPage, totalPages, pages)
+
+
+
+                        
+                    

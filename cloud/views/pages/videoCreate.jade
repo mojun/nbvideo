@@ -1,0 +1,61 @@
+extends ../layouts/default
+
+//block meta
+//    meta(http-equiv="Refresh", content="5;url=/video/list")
+
+block js
+    script(src="/javascripts/underscore-min-b.js")
+    script(src="/javascripts/videoCreate.js")
+
+block css
+    link(rel='stylesheet', href='/stylesheets/videoCreate.css')
+
+block intro
+    h2 新建视频
+
+block content
+    div.item-toolbar
+        ul.item-breadcrumbs
+            li
+                a(href="/video/list", title="返回视频列表页面")
+                    span.glyphicon.glyphicon-arrow-left
+                    | Videos
+
+    form.navbar-form.navbar-left(method="post", action="/manager/video/create", role="form")
+        div.user-form-group
+            label.field-label 视频标题
+            input.form-control(type="text", name="title", placeholder="输入标题")
+        div.user-form-group
+            label.field-label 视频缩略图
+            input#field-upload-image(type="hidden", name="image_upload")
+            img#video-thumb-pic(style="width: 84px; height: 56px;" , alt="请上传图片")
+            button#btn-change-image.btn.btn-default 修改图片
+            button#btn-upload-image.btn.btn-default 上传图片
+        div.user-form-group
+            label.field-label 视频源
+            select(name="sid")
+                option 优酷
+                option 土豆
+                option 乐视
+
+        div.user-form-group
+            label.field-label 视频分类
+            select(name="vtype")
+                option 
+
+        div.user-form-group
+            label.field-label 视频描述
+            textarea.form-control(type="text", cols="20", rows="3", name="description", placeholder="请输入视频描述信息")
+
+        div.user-form-group
+            label.field-label 视频链接
+            input.form-control(type="text", name="vurl", placeholder="输入视频链接")
+
+        div.user-form-group
+            label.field-label 视频ID
+            input.form-control(type="text", name="vid", placeholder="输入视频ID")
+
+
+
+
+

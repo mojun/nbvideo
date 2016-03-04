@@ -1,0 +1,49 @@
+doctype html
+html(lang="en")
+    head
+        link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+
+        
+        link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+        link(rel='stylesheet', href='/javascripts/jBox/themes/NoticeBorder.css')
+        link(rel='stylesheet', href='/javascripts/jBox/jBox.css')
+        link(rel='stylesheet', href='/stylesheets/ymmbd.css')
+
+        script(src="/javascripts/jquery.min.js")
+        script(src="/javascripts/jBox/jBox.min.js")
+        script(src="/javascripts/ymmbd.js")
+
+    body
+
+        div#bodyer.container 
+            div#inputer.container
+                select(id="article-type")
+                    option(value=0, selected="selected") 准备怀孕
+                    option(value=1) 怀孕期
+                    option(value=2) 婴儿期0-1岁
+                    option(value=3) 婴儿期1-3岁
+                    option(value=4) 婴儿期3-6岁
+
+                label.field-label 填写url
+                |        
+                input.form-control(type="text", id="input-surl", placeholder="请填写要解析的网页")
+                |        
+                button.btn.btn-primary(id="add-btn-surl") 添加
+                | ----注意----  
+                button.btn.btn-success(id="add-btn-postall") 批量添加到数据库
+
+            div#resulter.container
+                div.row
+                    div.col-md-8
+                        div#item-table.list-group
+
+            div#json-inputer.container
+                label.field-label 填写start id
+                input.form-control(type="text", id="startid", placeholder="请填写起始id")
+                label.field-label 填写end id (不包含)
+                input.form-control(type="text", id="endid", placeholder="请填写结束id")
+                button.btn.btn-success(id="save-json-btn") 从sqlite导出json
+
+
+                            
+

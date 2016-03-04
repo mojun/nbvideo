@@ -1,0 +1,21 @@
+extends ./layouts/default
+
+block js
+    script(src="/javascripts/test.js")
+
+block content
+    div#player
+        script(type="text/javascript", src="http://yuntv.letv.com/bcloud.js")
+
+    -var x = 1;
+    if x == 0
+        div 0
+    else if x == 1
+        div 1
+
+
+
+
+
+
+

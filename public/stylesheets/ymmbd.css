@@ -1,0 +1,12 @@
+
+body{
+	margin-top: 40px;
+}
+
+#input-surl{
+	width: 340px;
+}
+
+div#inputer label, div#inputer input, div#inputer button, div#inputer select{
+	display: inline-block;
+}

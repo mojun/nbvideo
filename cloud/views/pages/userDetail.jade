@@ -1,0 +1,35 @@
+extends ../layouts/default
+
+block css
+    link(rel='stylesheet', href='/stylesheets/userDetail.css')
+
+block js
+    script(src="/javascripts/userDetail.js")
+
+block intro
+    h2(objectId=user.objectId) 用户资料
+    h4.user-h4 头像:
+    - var headUrl = null
+    if(typeof user.headImage != 'undefined')
+        headUrl = user.headImage.url
+    img.user-img(src=headUrl, style="width: 54px; height: 54px;")
+        
+    h4 昵称:
+        strong= user.nickyName
+    h4 邮箱:
+        strong= user.email
+
+    ul.nav.nav-tabs.nav-justified(role="tablist", id="myTab")
+        li.active(role="presentation"): a(href="#myHistoryVideos", role="tab", data-toggle="tab") 我看过的视频
+        li(role="presentation"): a(href="#myCollectVideos", role="tab", data-toggle="tab") 我收藏的视频
+        li(role="presentation"): a(href="#myPublishPosts", role="tab", data-toggle="tab") 我发布的帖子
+        li(role="presentation"): a(href="#myCollectPosts", role="tab", data-toggle="tab") 我收藏的帖子
+    div.tab-content
+        div.active.tab-pane(role="tabpanel", id="myHistoryVideos") 我看过的视频
+        div.tab-pane(role="tabpanel", id="myCollectVideos") 我收藏的视频
+        div.tab-pane(role="tabpanel", id="myPublishPosts") 我发布的帖子
+        div.tab-pane(role="tabpanel", id="myCollectPosts") 我收藏的帖子
+
+
+block content
+    

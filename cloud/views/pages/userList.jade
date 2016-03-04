@@ -1,0 +1,47 @@
+extends ../layouts/default
+
+include ../mixins/pagination
+
+mixin userHtml(o)
+    tr
+        td
+            if o.headImage
+                img(src=o.headImage.url, alt=o.headImage.name, style="width: 36px; height: 36px;")
+        td= o.username
+        td= o.objectId
+        td= o.email
+        td= o.createdAt
+        td
+            a.editable-btn(href="/user/detail?objectId="+o.objectId, target="_blank") 详情
+
+block css
+    link(rel='stylesheet', href='/stylesheets/userList.css')
+
+block intro
+    h2 用户
+    h4
+        strong= "第"+currentPage+"页, "
+        strong= "总共"+totalCount+"条, "
+        strong= "总共"+totalPages+"页, "
+        strong= "每页"+pageSize+"条"
+
+block content
+    //div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main: 
+    div.table-responsive 
+        table.table.table-striped
+            thead
+                tr
+                    th headImage
+                    th username
+                    th objectId
+                    th email
+                    th createdAt
+                    th 操作
+            tbody
+                if list
+                    each u in list
+                        +userHtml(u)
+    hr
+    div.container
+        +pagination(currentPage, totalPages, pages)
+

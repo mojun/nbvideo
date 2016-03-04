@@ -1,0 +1,46 @@
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="Content-type", content="text/html;charset=UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+
+        script(src="/javascripts/jquery.min.js")
+        script(src="/javascripts/videoPlay" + sid +".js")
+        
+        link(rel='stylesheet', href="/stylesheets/" + cssFileName + ".css")
+
+        style(type="text/css").
+            body{
+                font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif;
+            }
+    body
+        div.top-bar(vid=vid)
+            h1 视频百科
+        div.article-main.container
+            div.article-main__header.container
+                h1= name
+                p= desc
+            div.article-main__bodyer.container
+                if sid == 0
+                    iframe(width="80%", height="140px", src="http://player.youku.com/embed/" + vid, frameborder=0, allowfullscreen)
+                else if sid == 1
+                    div#player
+                        | <script type="text/javascript"> var letvcloud_player_conf = {"vu":"#{vid}","uu":"a04808d307","autoPlay": "0", "height":"100%", "width":"100%"};</script>
+                        script(type="text/javascript", src="http://yuntv.letv.com/bcloud.js")
+                else if sid == 2
+                    iframe(src="http://www.tudou.com/programs/view/html5embed.action?code="+vid+"&autoPlay=false&playType=AUTO",width="80%",height="140px", allowfullscreen="true",allowtransparency="true",frameborder="0",scrolling="no")
+
+
+        div.container
+            p &copy 2014 KimoWorks, Inc.
+
+        div#fixedBanner.fixed-banner
+            img.logo-icon(src="../images/Icon-60@2x.png")
+            h3.banner-title 手机看视频神器
+            a.open-btn(href="#") 立即打开
+            a.close-btn(href="#") x
+
+        
+

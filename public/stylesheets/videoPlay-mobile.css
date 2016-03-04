@@ -1,0 +1,109 @@
+body{
+    line-height: 1.5;
+    border:0;
+    outline: 0;
+    vertical-align: baseline;
+}
+
+h2{
+    color:red;
+}
+
+div{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top-bar{
+    border-top: 4px solid #FF6600;
+    overflow: hidden;
+    display: block;
+}
+
+.top-bar h1 {
+    font-size: 14px;
+    color: #fff;
+    float: left;
+    background: #FF6600;
+    font-weight: 400;
+    margin: 0 0 0 4%;
+    padding: 0 20px 4px;
+    display: block;
+}
+
+.article-main__header h1 {
+    font-size: 14px;
+}
+
+.article-main__bodyer{
+    
+    margin: auto;
+    padding: 0px;
+}
+
+iframe{
+    height:140px;
+    width:80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.fixed-banner {
+    background: rgba(0, 0, 0, 0.6);
+    height: 72px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+}
+
+.fixed-banner .open-btn {
+    float: right;
+    margin: 20px 42px 0 0;
+    background: rgb(255, 102, 0);
+    border-radius: 6px;
+    font-size: 15px;
+    color: #fff;
+    width: 85px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+}
+
+.fixed-banner .close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    background: #333;
+    line-height: 24px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 100;
+}
+
+a{
+    text-decoration: none;
+}
+
+.logo-icon{
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+}
+
+.banner-title{
+    position: absolute;
+    top: 8px;
+    left: 72px;
+    height:56px;
+    vertical-align: center;
+    color: white;
+    font-size: 16px;
+}

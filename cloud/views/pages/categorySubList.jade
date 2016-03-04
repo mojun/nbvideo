@@ -1,0 +1,66 @@
+extends ../layouts/default
+
+mixin categoryHtml(o)
+    a.list-group-item(href="/video/list/bycategory?objectId="+o.objectId+"&name="+o.name+"&desc="+o.desc+"&picPath="+o.picPath+"&mainCategoryName="+mainCategoryName+"&mainCategoryDesc="+mainCategoryDesc+"&mainCategoryId="+mainCategoryId+"&mainPicUrl="+mainPicUrl, objectid=o.objectId)
+        h4.list-group-item-heading= o.name
+        p.list-group-item-text= o.desc
+        img.category-pic.img-thumbnail(src="http://mojun.github.io/appimage/nbvideo/" + o.picPath, alt="...")
+        button.btn.btn-default.btn-edit-category(type="button", data-toggle="modal", data-target="#category-create-modal") 编辑
+
+block css
+    link(rel='stylesheet', href='/stylesheets/categorySubList.css')
+
+block js
+    script(src="/javascripts/categorySubList.js")
+
+block intro
+    h2(desc=mainCategoryDesc, maincategoryid=mainCategoryId, mainPicUrl=mainPicUrl)= mainCategoryName
+
+block content
+    div.item-toolbar
+        button.btn.btn-success(type="button", data-toggle="modal", data-target="#category-create-modal") 新建视频子分类
+    br
+    ol.breadcrumb
+        li
+            a(href="/admin/page/categoryList") 视频分类
+        li.active= mainCategoryName
+    br
+    
+    //这里是 新建视频子分类的 modal
+    div#category-create-modal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myTitleLabel", aria-hidden="true")
+        div.modal-dialog.modal-md
+            div.modal-content
+                div.modal-header
+                    button.close(type="button", data-dismiss="modal")
+                        span(aria-hidden="true")&times;
+                        span.sr-only Close
+                    h4.modal-title(id="myTitleLabel") 创建视频子分类
+                div.modal-body
+                    label.field-label 类名
+                    input.form-control(type="text", id="category-name", name="name", placeholder="请填写分类名称")
+                    label.field-label 类描述
+                    textarea.form-control(type="text", rows="4", id="category-description", name="description", placeholder="请填写子分类描述")
+                    //input.form-control(type="file", style="display: none;", id="upload-pic")
+                    //button.btn.btn-default(id="upload-pic-btn") 选择图片
+                    //img#pic-img.img-thumbnail(src="", alt="...")
+                    label.field-label 填写图片url
+                    input.form-control(type="text", id="pic-path")
+                div.modal-footer
+                    button.btn.btn-default(data-dismiss="modal") Close
+                    button.btn.btn-primary(id="category-create") Create
+                    button.btn.btn-primary(id="category-update") Update
+
+    div.container
+        div.row
+            div.col-md-6
+                div#category-table-left.list-group
+                    if (typeof subCategorys != 'undefined')
+                            each c, i in subCategorys
+                                if i%2 == 0
+                                    +categoryHtml(c)
+            div.col-md-6
+                div#category-table-right.list-group
+                    if (typeof subCategorys != 'undefined')
+                            each c, i in subCategorys
+                                if i%2 == 1
+                                    +categoryHtml(c)

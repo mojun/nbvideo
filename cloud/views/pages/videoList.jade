@@ -1,0 +1,27 @@
+extends ../layouts/default
+
+//block meta
+//    meta(http-equiv="Refresh", content="5;url=/manager/video/create")
+
+block css
+    link(rel='stylesheet', href='/stylesheets/videoList.css')
+
+block js
+    script(src="/javascripts/videoList.js")
+
+block intro
+    h2 视频列表
+    h4
+        strong= "第"+currentPage+"页, "
+        strong= "总共"+totalCount+"条, "
+        strong= "总共"+totalPages+"页, "
+        strong= "每页"+pageSize+"条"
+        
+block content
+    div.item-toolbar
+        ul.item-toolbar-info
+            li(style="display: none;", objectId="")
+            li
+                a(href="/manager/video/create", title="创建视频")
+                    span.glyphicon.glyphicon-plus
+                    | New Video
